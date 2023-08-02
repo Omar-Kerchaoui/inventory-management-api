@@ -58,4 +58,23 @@ public class UtilisateurDto {
                                         .collect(Collectors.toList()) : null
                 ).build();
     }
+
+    public static Utilisateur toEntity(UtilisateurDto dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(dto.getId());
+        utilisateur.setNom(dto.getNom());
+        utilisateur.setPrenom(dto.getPrenom());
+        utilisateur.setEmail(dto.getEmail());
+        utilisateur.setMoteDePasse(dto.getMoteDePasse());
+        utilisateur.setDateDeNaissance(dto.getDateDeNaissance());
+        utilisateur.setAdresse(AdresseDto.toEntity(dto.getAdresse()));
+        utilisateur.setPhoto(dto.getPhoto());
+        utilisateur.setEntreprise(EntrepriseDto.toEntity(dto.getEntreprise()));
+
+        return utilisateur;
+    }
 }

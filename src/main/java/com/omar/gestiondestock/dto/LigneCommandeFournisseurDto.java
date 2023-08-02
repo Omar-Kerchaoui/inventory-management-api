@@ -20,6 +20,8 @@ public class LigneCommandeFournisseurDto {
 
     private BigDecimal quantite;
 
+    private Integer idEntreprise;
+
     private BigDecimal prixUnitaire;
 
 
@@ -31,6 +33,7 @@ public class LigneCommandeFournisseurDto {
                 .id(ligneCommandeFournisseur.getId())
                 .commandeFournisseur(CommandeFournisseurDto.fromEntity(ligneCommandeFournisseur.getCommandeFournisseur()))
                 .quantite(ligneCommandeFournisseur.getQuantite())
+                .idEntreprise(ligneCommandeFournisseur.getIdEntreprise())
                 .prixUnitaire(ligneCommandeFournisseur.getPrixUnitaire())
                 .build();
 

@@ -1,5 +1,6 @@
 package com.omar.gestiondestock.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.omar.gestiondestock.model.Article;
 import com.omar.gestiondestock.model.CommandeClient;
 import com.omar.gestiondestock.model.Fournisseur;
@@ -22,6 +23,8 @@ public class LigneCommandeClientDto {
 
     private BigDecimal quantite;
 
+    private Integer idEntreprise;
+
     private BigDecimal prixUnitaire;
 
 
@@ -32,6 +35,7 @@ public class LigneCommandeClientDto {
         return LigneCommandeClientDto.builder()
                 .id(ligneCommandeClient.getId())
                 .article(ligneCommandeClient.getArticle())
+                .idEntreprise(ligneCommandeClient.getIdEntreprise())
                 .commandeClient(ligneCommandeClient.getCommandeClient())
                 .quantite(ligneCommandeClient.getQuantite())
                 .prixUnitaire(ligneCommandeClient.getPrixUnitaire())

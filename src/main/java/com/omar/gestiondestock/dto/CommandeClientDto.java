@@ -1,5 +1,6 @@
 package com.omar.gestiondestock.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.omar.gestiondestock.model.Client;
 import com.omar.gestiondestock.model.CommandeClient;
 import com.omar.gestiondestock.model.LigneCommandeClient;
@@ -26,6 +27,8 @@ public class CommandeClientDto {
 
     private ClientDto client;
 
+    private Integer idEntreprise;
+
     private List<LigneCommandeClientDto> ligneCommandeClients;
 
 
@@ -37,6 +40,7 @@ public class CommandeClientDto {
                 .id(commandeClient.getId())
                 .code(commandeClient.getCode())
                 .dateCommande(commandeClient.getDateCommande())
+                .idEntreprise(commandeClient.getIdEntreprise())
                 .client(ClientDto.fromEntity(commandeClient.getClient()))
                 .ligneCommandeClients(
                         commandeClient.getLigneCommandeClients() != null ?

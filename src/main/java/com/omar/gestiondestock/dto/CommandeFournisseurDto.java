@@ -21,6 +21,8 @@ public class CommandeFournisseurDto {
 
     private FournisseurDto fournisseur;
 
+    private Integer idEntreprise;
+
     private List<LigneCommandeFournisseurDto> ligneCommandeFournisseurs;
 
 
@@ -33,6 +35,7 @@ public class CommandeFournisseurDto {
                 .id(commandeFournisseur.getId())
                 .code(commandeFournisseur.getCode())
                 .dateCommande(commandeFournisseur.getDateCommande())
+                .idEntreprise(commandeFournisseur.getIdEntreprise())
                 .fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
                 .ligneCommandeFournisseurs(
                         commandeFournisseur.getLigneCommandeFournisseurs() != null ?

@@ -1,6 +1,6 @@
 package com.omar.gestiondestock.dto;
 
-import com.omar.gestiondestock.model.LigneCommandeFournisseur;
+import com.omar.gestiondestock.model.Article;
 import com.omar.gestiondestock.model.LigneVente;
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +15,14 @@ public class LigneVenteDto {
 
     private VenteDto vente;
 
+    private Article article;
+
     private BigDecimal quantite;
 
+    private Integer idEntreprise;
+
     private BigDecimal prixUnitaire;
+
 
     public static LigneVenteDto fromEntity(LigneVente ligneVente){
         if (ligneVente == null){
@@ -27,6 +32,7 @@ public class LigneVenteDto {
                 .id(ligneVente.getId())
                 .vente(VenteDto.fromEntity(ligneVente.getVente()))
                 .quantite(ligneVente.getQuantite())
+                .idEntreprise(ligneVente.getIdEntreprise())
                 .prixUnitaire(ligneVente.getPrixUnitaire())
                 .build();
 

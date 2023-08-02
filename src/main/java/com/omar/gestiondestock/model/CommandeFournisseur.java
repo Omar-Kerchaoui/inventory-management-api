@@ -22,7 +22,7 @@ public class CommandeFournisseur extends AbstractEntity {
     @JoinColumn(name = "idFournisseur")
     private Fournisseur fournisseur;
 
-    @Column(name = "idEntreprise")
+    @Column(name = "identreprise")
     private Integer idEntreprise;
 
     @OneToMany(mappedBy = "commandeFournisseur")

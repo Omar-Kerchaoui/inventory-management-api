@@ -23,12 +23,12 @@ public class MvtStk extends AbstractEntity{
     @JoinColumn(name = "idarticle")
     private Article article;
 
-    @Column(name = "idEntreprise")
+    @Column(name = "identreprise")
     private Integer idEntreprise;
 
 
     @Column(name = "typemvt")
-    @OneToOne(mappedBy = "TypeMvtStk")
+    @Enumerated(EnumType.STRING)
     private TypeMvtStk typeMvt;
 
 

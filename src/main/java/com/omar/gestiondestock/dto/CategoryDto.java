@@ -17,7 +17,8 @@ public class CategoryDto {
 
     private String designation;
 
-    @JsonIgnore
+    private Integer idEntreprise;
+
     private List<ArticleDto> articles;
 
 
@@ -30,6 +31,7 @@ public class CategoryDto {
         return CategoryDto.builder()
                 .id(category.getId())
                 .code(category.getCode())
+                .idEntreprise(category.getIdEntreprise())
                 .designation(category.getDesignation())
                 .articles(
                         category.getArticles() != null ?

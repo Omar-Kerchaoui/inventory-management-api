@@ -1,12 +1,7 @@
 package com.omar.gestiondestock.dto;
 
-import com.omar.gestiondestock.model.Article;
-import com.omar.gestiondestock.model.LigneVente;
 import com.omar.gestiondestock.model.MvtStk;
 import com.omar.gestiondestock.model.TypeMvtStk;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
 
@@ -25,7 +20,9 @@ public class MvtStkDto {
 
     private ArticleDto article;
 
-    private TypeMvtStkDto typeMvt;
+    private TypeMvtStk typeMvt;
+
+    private Integer idEntreprise;
 
 
     public static MvtStkDto fromEntity(MvtStk mvtStk){
@@ -37,7 +34,9 @@ public class MvtStkDto {
                 .datMvt(mvtStk.getDatMvt())
                 .quantite(mvtStk.getQuantite())
                 .article(ArticleDto.fromEntity(mvtStk.getArticle()))
-                .typeMvt(TypeMvtStkDto.fromEntity(mvtStk.getTypeMvt()))
+                .idEntreprise(mvtStk.getIdEntreprise())
+                .typeMvt(mvtStk.getTypeMvt())
+                .idEntreprise(mvtStk.getIdEntreprise())
                 .build();
 
     }
@@ -51,6 +50,9 @@ public class MvtStkDto {
         mvtStk.setId(mvtStkDto.getId());
         mvtStk.setDatMvt(mvtStkDto.getDatMvt());
         mvtStk.setQuantite(mvtStkDto.getQuantite());
+        mvtStk.setArticle(ArticleDto.toEntity(mvtStkDto.getArticle()));
+        mvtStk.setTypeMvt(mvtStkDto.getTypeMvt());
+        mvtStk.setIdEntreprise(mvtStkDto.getIdEntreprise());
 
 
         return mvtStk;

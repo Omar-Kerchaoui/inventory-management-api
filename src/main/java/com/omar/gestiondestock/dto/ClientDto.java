@@ -25,6 +25,8 @@ public class ClientDto {
 
     private String mail;
 
+    private Integer idEntreprise;
+
     private String numTel;
 
     @JsonIgnore
@@ -38,6 +40,7 @@ public class ClientDto {
         return ClientDto.builder()
                 .id(client.getId())
                 .nom(client.getNom())
+                .idEntreprise(client.getIdEntreprise())
                 .prenom(client.getPrenom())
                 .adresse(client.getAdresse())
                 .photo(client.getPhoto())

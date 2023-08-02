@@ -11,33 +11,33 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class Utilisateur extends AbstractEntity{
+public class Utilisateur extends AbstractEntity {
 
     @Column(name = "nom")
     private String nom;
 
-    @Column (name = "prenom")
+    @Column(name = "prenom")
     private String prenom;
 
-    @Column (name = "email")
+    @Column(name = "email")
     private String email;
 
-    @Column (name = "datedenaissance")
+    @Column(name = "datedenaissance")
     private Instant dateDeNaissance;
 
-    @Column (name = "motdepasse")
+    @Column(name = "motdepasse")
     private String moteDePasse;
 
     @Embedded
     private Adresse adresse;
 
-    @Column (name = "photo")
+    @Column(name = "photo")
     private String photo;
 
     @ManyToOne
-    @JoinColumn(name = "identreprise")
+    @JoinColumn(name = "identreprise", insertable = false, updatable = false)
     private Entreprise entreprise;
 
-    @OneToMany (mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "utilisateur")
     private List<Role> roles;
 }

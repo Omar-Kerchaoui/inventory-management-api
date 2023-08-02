@@ -34,8 +34,6 @@ public class Entreprise extends AbstractEntity{
     @Column(name = "email")
     private String email;
 
-    @Column(name = "idEntreprise")
-    private Integer idEntreprise;
 
     @Column(name = "numtel")
     private String numTel;

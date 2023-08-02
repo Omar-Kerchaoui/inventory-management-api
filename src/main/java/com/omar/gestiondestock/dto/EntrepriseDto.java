@@ -28,6 +28,8 @@ public class EntrepriseDto {
 
     private String numTel;
 
+    private Integer idEntreprise;
+
     private String steWeb;
 
     private List<UtilisateurDto> utilisateurs;
@@ -44,6 +46,7 @@ public class EntrepriseDto {
                 .description(entreprise.getDescription())
                 .adresse(AdresseDto.fromEntity(entreprise.getAdresse()))
                 .codefiscal(entreprise.getCodefiscal())
+                .idEntreprise(entreprise.getId())
                 .photo(entreprise.getPhoto())
                 .email(entreprise.getEmail())
                 .numTel(entreprise.getNumTel())

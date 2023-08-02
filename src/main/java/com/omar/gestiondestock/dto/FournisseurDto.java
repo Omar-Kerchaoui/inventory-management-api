@@ -22,6 +22,8 @@ public class FournisseurDto {
 
     private String photo;
 
+    private Integer idEntreprise;
+
     private String mail;
 
     private String numTel;
@@ -37,6 +39,7 @@ public class FournisseurDto {
                 .id(fournisseur.getId())
                 .nom(fournisseur.getNom())
                 .prenom(fournisseur.getPrenom())
+                .idEntreprise(fournisseur.getIdEntreprise())
                 .adresse(AdresseDto.fromEntity(fournisseur.getAdresse()))
                 .photo(fournisseur.getPhoto())
                 .mail(fournisseur.getMail())

@@ -4,12 +4,21 @@ spring:
     username: omar
     password: omar
     driver-class-name: com.mysql.cj.jdbc.Driver
-# specify DBMS
+  # specify DBMS
   jpa:
     database: MYSQL
-# Hibernate DDL Auto (create, create-drop, update)
+    # Hibernate DDL Auto (create, create-drop, update)
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 server:
   port: 8081
+
+flickr:
+  apiKey: ed7931ce34e48987adcf6cb9f78a888c
+  apiSecret: ef076aacf3f6a558
+  appKey: 72157720889674011-18253b05bbbee14d
+  appSecret: 28ddfb281cdae6f8

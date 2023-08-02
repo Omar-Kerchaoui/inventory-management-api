@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
+import java.util.List;
 
 @Builder
 @Data
@@ -18,7 +19,11 @@ public class VenteDto {
 
     private Instant dateVente;
 
+    private Integer idEntreprise;
+
     private String commentaire;
+
+    private List<LigneVenteDto> ligneVente;
 
     public static VenteDto fromEntity(Vente vente){
         if (vente == null){
@@ -27,6 +32,7 @@ public class VenteDto {
         return VenteDto.builder()
                 .id(vente.getId())
                 .code(vente.getCode())
+                .idEntreprise(vente.getIdEntreprise())
                 .dateVente(vente.getDateVente())
                 .commentaire(vente.getCommentaire())
                 .build();

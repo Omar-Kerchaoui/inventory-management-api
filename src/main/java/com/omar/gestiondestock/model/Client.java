@@ -30,7 +30,7 @@ public class Client extends AbstractEntity{
     @Column (name = "mail")
     private String mail;
 
-    @Column(name = "idEntreprise")
+    @Column(name = "identreprise",insertable=false, updatable=false)
     private Integer idEntreprise;
 
     @Column (name = "nunTel")

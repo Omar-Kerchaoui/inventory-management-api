@@ -13,26 +13,27 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class Fournisseur extends AbstractEntity{
+public class Fournisseur extends AbstractEntity {
+
     @Column(name = "nom")
     private String nom;
 
-    @Column (name = "prenom")
+    @Column(name = "prenom")
     private String prenom;
 
     @Embedded
     private Adresse adresse;
 
-    @Column (name = "photo")
+    @Column(name = "photo")
     private String photo;
 
-    @Column (name = "mail")
+    @Column(name = "mail")
     private String mail;
 
-    @Column(name = "idEntreprise")
+    @Column(name = "identreprise", insertable = false, updatable = false)
     private Integer idEntreprise;
 
-    @Column (name = "nunTel")
+    @Column(name = "nunTel")
     private String numTel;
 
     @OneToMany(mappedBy = "fournisseur")
