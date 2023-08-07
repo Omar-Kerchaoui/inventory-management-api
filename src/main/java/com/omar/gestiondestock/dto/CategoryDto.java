@@ -19,6 +19,7 @@ public class CategoryDto {
 
     private Integer idEntreprise;
 
+    @JsonIgnore
     private List<ArticleDto> articles;
 
 
@@ -52,6 +53,7 @@ public class CategoryDto {
         Category category = new Category();
         category.setId(categoryDto.getId());
         category.setCode(categoryDto.getCode());
+        category.setIdEntreprise(categoryDto.getIdEntreprise());
         category.setDesignation(categoryDto.getDesignation());
 
         return category;

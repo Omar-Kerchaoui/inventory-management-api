@@ -7,10 +7,13 @@ spring:
   # specify DBMS
   jpa:
     database: MYSQL
-    # Hibernate DDL Auto (create, create-drop, update)
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        session_factory:
+          statement_inspector: com.omar.gestiondestock.interceptor.Interceptor
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

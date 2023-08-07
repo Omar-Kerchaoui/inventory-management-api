@@ -1,7 +1,6 @@
 package com.omar.gestiondestock.config;
 
 import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
@@ -9,7 +8,6 @@ import com.flickr4java.flickr.auth.Permission;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 
 
 @Configuration
@@ -30,6 +28,7 @@ public class FlickrConfiguration {
 
     @Bean
     public Flickr getFlickr2(){
+
         Flickr flickr = new Flickr(apiKey,apiSecret,new REST());
 
         Auth auth = new Auth();
