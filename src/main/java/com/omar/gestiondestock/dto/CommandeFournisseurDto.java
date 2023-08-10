@@ -1,7 +1,9 @@
 package com.omar.gestiondestock.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.omar.gestiondestock.model.CommandeClient;
 import com.omar.gestiondestock.model.CommandeFournisseur;
+import com.omar.gestiondestock.model.EtatCommande;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,10 +23,12 @@ public class CommandeFournisseurDto {
 
     private FournisseurDto fournisseur;
 
+    private EtatCommande etatCommande;
+
     private Integer idEntreprise;
 
+    @JsonIgnore
     private List<LigneCommandeFournisseurDto> ligneCommandeFournisseurs;
-
 
 
     public static CommandeFournisseurDto fromEntity(CommandeFournisseur commandeFournisseur){
@@ -37,6 +41,7 @@ public class CommandeFournisseurDto {
                 .dateCommande(commandeFournisseur.getDateCommande())
                 .idEntreprise(commandeFournisseur.getIdEntreprise())
                 .fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
+                .etatCommande(commandeFournisseur.getEtatCommande())
                 .ligneCommandeFournisseurs(
                         commandeFournisseur.getLigneCommandeFournisseurs() != null ?
                                 commandeFournisseur.getLigneCommandeFournisseurs().stream()
@@ -56,8 +61,11 @@ public class CommandeFournisseurDto {
         commandeFournisseur.setId(commandeFournisseurDto.getId());
         commandeFournisseur.setCode(commandeFournisseurDto.getCode());
         commandeFournisseur.setDateCommande(commandeFournisseurDto.getDateCommande());
+        commandeFournisseur.setEtatCommande(commandeFournisseurDto.getEtatCommande());
 
         return commandeFournisseur;
     }
+
+    public boolean isCommandeLivree(){return EtatCommande.LIVREE.equals(this.etatCommande);};
 
 }

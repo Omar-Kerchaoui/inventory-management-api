@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Api("authentication")
 public interface AuthenticationApi {
 
-    @PostMapping(Constants.AUTHENTICATION_ENDPOINT + "/authenticate")
+    @PostMapping(value = "/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request);
 }

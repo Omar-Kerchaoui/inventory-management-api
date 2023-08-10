@@ -3,6 +3,7 @@ package com.omar.gestiondestock.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.omar.gestiondestock.model.Client;
 import com.omar.gestiondestock.model.CommandeClient;
+import com.omar.gestiondestock.model.EtatCommande;
 import com.omar.gestiondestock.model.LigneCommandeClient;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
@@ -25,10 +26,13 @@ public class CommandeClientDto {
 
     private Instant dateCommande;
 
+    private EtatCommande etatCommande;
+
     private ClientDto client;
 
     private Integer idEntreprise;
 
+    @JsonIgnore
     private List<LigneCommandeClientDto> ligneCommandeClients;
 
 
@@ -40,6 +44,7 @@ public class CommandeClientDto {
                 .id(commandeClient.getId())
                 .code(commandeClient.getCode())
                 .dateCommande(commandeClient.getDateCommande())
+                .etatCommande(commandeClient.getEtatCommande())
                 .idEntreprise(commandeClient.getIdEntreprise())
                 .client(ClientDto.fromEntity(commandeClient.getClient()))
                 .ligneCommandeClients(
@@ -60,8 +65,14 @@ public class CommandeClientDto {
         CommandeClient commandeClient  = new CommandeClient();
         commandeClient.setId(commandeClientDto.getId());
         commandeClient.setCode(commandeClientDto.getCode());
+        commandeClient.setEtatCommande(commandeClientDto.getEtatCommande());
         commandeClient.setDateCommande(commandeClientDto.getDateCommande());
 
         return commandeClient;
+    }
+
+    public boolean isCommandeLivree(){
+        return EtatCommande.LIVREE.equals(this.etatCommande);
+
     }
 }

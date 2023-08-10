@@ -32,16 +32,9 @@ public class CategoryDto {
         return CategoryDto.builder()
                 .id(category.getId())
                 .code(category.getCode())
-                .idEntreprise(category.getIdEntreprise())
                 .designation(category.getDesignation())
-                .articles(
-                        category.getArticles() != null ?
-                                category.getArticles().stream()
-                                        .map(ArticleDto::fromEntity)
-                                        .collect(Collectors.toList()) : null
-                )
+                .idEntreprise(category.getIdEntreprise())
                 .build();
-
     }
 
     public static Category toEntity(CategoryDto categoryDto){

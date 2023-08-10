@@ -20,7 +20,7 @@ public class LigneVente extends AbstractEntity {
     private Vente vente;
 
     @ManyToOne
-    @JoinColumn(name="idArticle")
+    @JoinColumn(name="idarticle")
     private Article article;
 
     @Column(name = "quantite")

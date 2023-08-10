@@ -4,6 +4,7 @@ import com.omar.gestiondestock.dto.AdresseDto;
 import com.omar.gestiondestock.dto.UtilisateurDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 

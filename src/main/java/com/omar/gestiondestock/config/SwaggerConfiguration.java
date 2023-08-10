@@ -3,6 +3,8 @@ package com.omar.gestiondestock.config;
 import com.omar.gestiondestock.utils.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -61,5 +63,10 @@ public class SwaggerConfiguration {
         authorizationScopes[0] = authorizationScope;
         return Collections.singletonList(
                 new SecurityReference("JWT", authorizationScopes));
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

@@ -1,5 +1,6 @@
 package com.omar.gestiondestock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@Table(name = "utilisateur")
 public class Utilisateur extends AbstractEntity {
 
     @Column(name = "nom")
@@ -35,9 +37,10 @@ public class Utilisateur extends AbstractEntity {
     private String photo;
 
     @ManyToOne
-    @JoinColumn(name = "identreprise", insertable = false, updatable = false)
+    @JoinColumn(name = "identreprise")
     private Entreprise entreprise;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateur")
+    @JsonIgnore
     private List<Role> roles;
 }

@@ -35,6 +35,7 @@ public class CategoryController implements CategoryApi {
 
     @Override
         public List<CategoryDto> findAll() {
+        String test= "test";
         return categoryService.findAll();
     }
 

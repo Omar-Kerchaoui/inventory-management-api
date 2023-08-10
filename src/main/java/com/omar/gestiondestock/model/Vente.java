@@ -14,13 +14,14 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class Vente extends AbstractEntity{
+
     @Column(name = "code")
     private String code;
 
-    @Column(name = "dateVente")
+    @Column(name = "datevente")
     private Instant dateVente;
 
-    @Column(name = "idEntreprise")
+    @Column(name = "identreprise")
     private Integer idEntreprise;
 
     @Column(name="commentaire")

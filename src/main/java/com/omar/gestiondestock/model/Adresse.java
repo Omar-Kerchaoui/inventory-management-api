@@ -23,9 +23,6 @@ public class Adresse {
     @Column (name = "codepostale")
     private String codePostale;
 
-    @Column(name = "identreprise")
-    private Integer idEntreprise;
-
     @Column (name = "pays")
     private String pays;
 }

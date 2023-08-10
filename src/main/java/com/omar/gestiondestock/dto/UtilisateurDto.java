@@ -56,7 +56,8 @@ public class UtilisateurDto {
                                 utilisateur.getRoles().stream()
                                         .map(RoleDto::fromEntity)
                                         .collect(Collectors.toList()) : null
-                ).build();
+                )
+                .build();
     }
 
     public static Utilisateur toEntity(UtilisateurDto dto) {

@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Client extends AbstractEntity{
 
-    @Column(name = "non")
+    @Column(name = "nom")
     private String nom;
 
     @Column (name = "prenom")
@@ -33,7 +33,7 @@ public class Client extends AbstractEntity{
     @Column(name = "identreprise",insertable=false, updatable=false)
     private Integer idEntreprise;
 
-    @Column (name = "nunTel")
+    @Column (name = "numTel")
     private String numTel;
 
     @OneToMany(mappedBy = "client")

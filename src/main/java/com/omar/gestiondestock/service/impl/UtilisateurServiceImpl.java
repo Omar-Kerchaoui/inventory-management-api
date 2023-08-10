@@ -10,6 +10,7 @@ import com.omar.gestiondestock.service.UtilisateurService;
 import com.omar.gestiondestock.validator.UtilisateurValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -22,12 +23,15 @@ import java.util.stream.Collectors;
 public class UtilisateurServiceImpl implements UtilisateurService {
 
     private UtilisateurRepository utilisateurRepository;
-
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository,
+                                  PasswordEncoder passwordEncoder) {
         this.utilisateurRepository = utilisateurRepository;
+        this.passwordEncoder = passwordEncoder;
     }
+
 
     @Override
     public UtilisateurDto save(UtilisateurDto dto) {
@@ -42,6 +46,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                     Collections.singletonList("Un autre utilisateur avec le meme email existe deja dans la BDD"));
         }
 
+        dto.setMoteDePasse(passwordEncoder.encode(dto.getMoteDePasse()));
 
 
         return UtilisateurDto.fromEntity(
