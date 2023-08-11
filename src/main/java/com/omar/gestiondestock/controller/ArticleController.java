@@ -2,6 +2,9 @@ package com.omar.gestiondestock.controller;
 
 import com.omar.gestiondestock.controller.api.ArticleApi;
 import com.omar.gestiondestock.dto.ArticleDto;
+import com.omar.gestiondestock.dto.LigneCommandeClientDto;
+import com.omar.gestiondestock.dto.LigneCommandeFournisseurDto;
+import com.omar.gestiondestock.dto.LigneVenteDto;
 import com.omar.gestiondestock.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +39,26 @@ public class ArticleController implements ArticleApi {
     @Override
     public List<ArticleDto> findAll() {
         return articleService.findAll();
+    }
+
+    @Override
+    public List<LigneVenteDto> findHistoriqueVentes(Integer idArticle) {
+        return articleService.findHistoriqueVentes(idArticle);
+    }
+
+    @Override
+    public List<LigneCommandeClientDto> findHistoriqueCommandeClient(Integer idArticle) {
+        return articleService.findHistoriqueCommandeClient(idArticle);
+    }
+
+    @Override
+    public List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(Integer idArticle) {
+        return articleService.findHistoriqueCommandeFournisseur(idArticle);
+    }
+
+    @Override
+    public List<ArticleDto> findAllArticleByIdCategory(Integer idCategory) {
+        return articleService.findAllArticleByIdCategory(idCategory);
     }
 
     @Override

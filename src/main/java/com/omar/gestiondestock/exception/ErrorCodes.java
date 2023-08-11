@@ -31,6 +31,10 @@ public enum ErrorCodes {
     VENTE_NOT_FOUND(13000),
     VENTE_NOT_VALID(13001),
 
+    // liste des exceptions techniques
+    UPDATE_PHOTO_EXCEPTION(14000),
+    UNKNOWN_CONTEXT(14001)
+
     ;
     private int code;
 

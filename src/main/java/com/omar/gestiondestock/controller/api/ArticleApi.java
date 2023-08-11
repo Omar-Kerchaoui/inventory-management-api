@@ -1,6 +1,9 @@
 package com.omar.gestiondestock.controller.api;
 
 import com.omar.gestiondestock.dto.ArticleDto;
+import com.omar.gestiondestock.dto.LigneCommandeClientDto;
+import com.omar.gestiondestock.dto.LigneCommandeFournisseurDto;
+import com.omar.gestiondestock.dto.LigneVenteDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -56,6 +59,20 @@ public interface ArticleApi {
             @ApiResponse(responseCode = "200", description = "La liste des article / une liste vide"),
     })
     List<ArticleDto> findAll();
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/vente/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneVenteDto> findHistoriqueVentes(@PathVariable("idArticle") Integer idArticle);
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/commandeClient/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneCommandeClientDto> findHistoriqueCommandeClient(@PathVariable("idArticle")Integer idArticle);
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/commandeFournisseur/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(@PathVariable("idArticle")Integer idArticle);
+
+
+    @GetMapping(value = APP_ROOT + "/articles/filter/category/{idCategory}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<ArticleDto> findAllArticleByIdCategory(@PathVariable("idCategory")Integer idCategory);
+
 
     @Operation(
             summary = "Supprimer un article",
