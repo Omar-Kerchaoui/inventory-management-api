@@ -21,6 +21,7 @@ public interface CommandeClientService {
 
     CommandeClientDto updateArticle (Integer idCommande, Integer idLigneCommande, Integer idArticle);
 
+    // delete article ==> delete ligneCommandeClient
     CommandeClientDto deleteArticle(Integer idCommande, Integer idLigneCommande);
 
     List<LigneCommandeClientDto> findAllLigneCommandeClientByCommandeClientId(Integer idCommandeClient);

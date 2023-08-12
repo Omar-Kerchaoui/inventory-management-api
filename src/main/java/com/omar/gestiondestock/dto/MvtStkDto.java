@@ -1,6 +1,7 @@
 package com.omar.gestiondestock.dto;
 
 import com.omar.gestiondestock.model.MvtStk;
+import com.omar.gestiondestock.model.SourceMvtStk;
 import com.omar.gestiondestock.model.TypeMvtStk;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,8 @@ public class MvtStkDto {
 
     private TypeMvtStk typeMvt;
 
+    private SourceMvtStk sourceMvtStk;
+
     private Integer idEntreprise;
 
 
@@ -36,6 +39,7 @@ public class MvtStkDto {
                 .article(ArticleDto.fromEntity(mvtStk.getArticle()))
                 .idEntreprise(mvtStk.getIdEntreprise())
                 .typeMvt(mvtStk.getTypeMvt())
+                .sourceMvtStk(mvtStk.getSourceMvt())
                 .idEntreprise(mvtStk.getIdEntreprise())
                 .build();
 
@@ -53,6 +57,7 @@ public class MvtStkDto {
         mvtStk.setArticle(ArticleDto.toEntity(mvtStkDto.getArticle()));
         mvtStk.setTypeMvt(mvtStkDto.getTypeMvt());
         mvtStk.setIdEntreprise(mvtStkDto.getIdEntreprise());
+        mvtStk.setSourceMvt(mvtStkDto.getSourceMvtStk());
 
 
         return mvtStk;

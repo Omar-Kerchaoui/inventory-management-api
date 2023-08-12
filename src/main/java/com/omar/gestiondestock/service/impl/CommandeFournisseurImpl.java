@@ -8,6 +8,7 @@ import com.omar.gestiondestock.exception.InvalidOperationException;
 import com.omar.gestiondestock.model.*;
 import com.omar.gestiondestock.repository.*;
 import com.omar.gestiondestock.service.CommandeFournisseurService;
+import com.omar.gestiondestock.service.MvtStkService;
 import com.omar.gestiondestock.validator.ArticleValidator;
 import com.omar.gestiondestock.validator.CommandeFournisseurValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,13 +31,16 @@ public class CommandeFournisseurImpl implements CommandeFournisseurService {
     private FournisseurRepository fournisseurRepository;
     private ArticleRepository articleRepository;
     private LigneCommandeFournisseurRepository ligneCommandeFournisseurRepository;
+    private MvtStkService mvtStkService;
+
 
     @Autowired
-    public CommandeFournisseurImpl(CommandeFournisseurRepository commandeFournisseurRepository, FournisseurRepository fournisseurRepository, ArticleRepository articleRepository, LigneCommandeFournisseurRepository ligneCommandeFournisseurRepository) {
+    public CommandeFournisseurImpl(CommandeFournisseurRepository commandeFournisseurRepository, FournisseurRepository fournisseurRepository, ArticleRepository articleRepository, LigneCommandeFournisseurRepository ligneCommandeFournisseurRepository, MvtStkService mvtStkService) {
         this.commandeFournisseurRepository = commandeFournisseurRepository;
         this.fournisseurRepository = fournisseurRepository;
         this.articleRepository = articleRepository;
         this.ligneCommandeFournisseurRepository = ligneCommandeFournisseurRepository;
+        this.mvtStkService = mvtStkService;
     }
 
     @Override
@@ -107,9 +112,13 @@ public class CommandeFournisseurImpl implements CommandeFournisseurService {
         CommandeFournisseurDto commandeFournisseurDto = checkEtatCommande(idCommande);
         commandeFournisseurDto.setEtatCommande(etatCommande);
 
-        return CommandeFournisseurDto.fromEntity(
-                commandeFournisseurRepository.save(CommandeFournisseurDto.toEntity(commandeFournisseurDto))
-        );
+        CommandeFournisseur savedCommande = commandeFournisseurRepository.save(CommandeFournisseurDto.toEntity(commandeFournisseurDto));
+
+        if (commandeFournisseurDto.isCommandeLivree()) {
+            updateMvtStk(idCommande);
+        }
+
+        return CommandeFournisseurDto.fromEntity(savedCommande);
     }
 
     @Override
@@ -302,6 +311,23 @@ public class CommandeFournisseurImpl implements CommandeFournisseurService {
                     ErrorCodes.COMMANDE_FOUTNISSEUR_NOT_FOUND);
         }
         return ligneCommandeFournisseurOptional;
+    }
+
+    private void updateMvtStk(Integer idCommande){
+        List<LigneCommandeFournisseur> ligneCommandeFournisseur = ligneCommandeFournisseurRepository.findAllByCommandeFournisseurId(idCommande);
+        ligneCommandeFournisseur.forEach(lig -> {
+            MvtStkDto mvtStkDto = MvtStkDto.builder()
+                    .article(ArticleDto.fromEntity(lig.getArticle()))
+                    .datMvt(Instant.now())
+                    .typeMvt(TypeMvtStk.ENTREE)
+                    .sourceMvtStk(SourceMvtStk.COMMANDE_FOURNISSEUR)
+                    .quantite(lig.getQuantite())
+                    .idEntreprise(lig.getIdEntreprise())
+                    .build();
+
+            mvtStkService.sortieStock(mvtStkDto);
+        });
+
     }
 
 }
