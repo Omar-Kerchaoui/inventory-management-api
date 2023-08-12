@@ -19,7 +19,7 @@ public class ClientDto {
 
     private String prenom;
 
-    private Adresse adresse;
+    private AdresseDto adresse;
 
     private String photo;
 

@@ -10,6 +10,7 @@ public class EntrepriseValidator {
 
     public static List<String> validate(EntrepriseDto dto) {
         List<String> errors = new ArrayList<>();
+
         if (dto == null) {
             errors.add("Veuillez renseigner le nom de l'entreprise");
             errors.add("Veuillez reseigner la description de l'entreprise");

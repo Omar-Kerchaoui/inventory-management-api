@@ -1,5 +1,6 @@
 package com.omar.gestiondestock.service;
 
+import com.omar.gestiondestock.dto.ChangerMotDePasseUtilisateurDto;
 import com.omar.gestiondestock.dto.UtilisateurDto;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface UtilisateurService {
     void delete(Integer id);
 
     UtilisateurDto findByEmail(String email);
+
+    UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto);
 }

@@ -30,6 +30,8 @@ public class ClientValidator {
         if (!StringUtils.hasLength(dto.getNumTel())) {
             errors.add("Veuillez renseigner le numero de telephone du client");
         }
+
+        errors.addAll(AdresseValidator.validate(dto.getAdresse()));
         return errors;
     }
 }

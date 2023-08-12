@@ -31,6 +31,9 @@ public class FournisseurValidator {
         if (!StringUtils.hasLength(dto.getNumTel())) {
             errors.add("Veuillez renseigner le numero de telephone du fournisseur");
         }
+
+        errors.addAll(AdresseValidator.validate(dto.getAdresse()));
+
         return errors;
     }
 }
